@@ -1,0 +1,27 @@
+{
+  "name": "todo-list-app",
+  "version": "1.0.0",
+  "description": "A Basic Todo List App Written with NodeJs and Express",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arielmagbanua/todo-list-app.git"
+  },
+  "author": "ariel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arielmagbanua/todo-list-app/issues"
+  },
+  "homepage": "https://github.com/arielmagbanua/todo-list-app#readme",
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
