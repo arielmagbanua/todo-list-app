@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/arielmagbanua/todo-list-app#readme",
   "dependencies": {
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "mongoose": "^8.7.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

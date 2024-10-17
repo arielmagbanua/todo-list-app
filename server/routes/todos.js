@@ -27,14 +27,4 @@ router.delete("/todos/:id", (req, res) => {
   res.send(`Deleting TODO with id ${id}`);
 });
 
-export const something = {
-  name: "something",
-  age: 20,
-};
-
-export const somehow = {
-  name: "somehow",
-  age: 20,
-};
-
 export default router;
