@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export default function connect() {
   const database =
-    "mongodb+srv://magbanuacariel:oN0MCAi81iEyMPRd@todocluster.iu0z4.mongodb.net/?retryWrites=true&w=majority&appName=TodoCluster";
+    "mongodb+srv://magbanuacariel:MY_PASSWORD@todocluster.iu0z4.mongodb.net/?retryWrites=true&w=majority&appName=TodoCluster";
   mongoose
     .connect(database, {
       useNewUrlParser: true,
