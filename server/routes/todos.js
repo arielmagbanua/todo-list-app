@@ -1,8 +1,24 @@
 import express from "express";
 const router = express.Router();
 
-router.get("/todos", (req, res) => {
-  res.send("All Todos");
+router.get("/todos", async (req, res) => {
+  const userId = req.params.userId;
+  const todoId = req.query.id;
+
+  try {
+    if (todoId) {
+      const todo = await Todo.findOne({ _id: todoId, userId: userId });
+      if (!todo) {
+        return res.status(404).json({ message: "Todo not found" });
+      }
+      res.json(todo);
+    } else {
+      const todos = await Todo.find({ userId: userId });
+      res.json(todos);
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching todos", error });
+  }
 });
 
 router.get("/todos/:id", (req, res) => {
