@@ -105,3 +105,37 @@ body {
 .login__card {
   min-width: 400px;
 }
+
+.todos-container {
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  padding-right: 24px;
+  gap: 16px;
+}
+
+.todo-header {
+  margin-bottom: 20px;
+}
+
+.todo-card {
+  padding: 16px;
+  min-width: 300px;
+  max-width: 400px;
+  background-color: #fffacd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.todo-delete {
+  cursor: pointer;
+}
+
+.todo-delete:hover {
+  color: red;
+}

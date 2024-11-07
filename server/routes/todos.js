@@ -1,8 +1,9 @@
 import express from "express";
 const router = express.Router();
+import Todo from "../models/Todo.js";
 import verifyToken from "../middlewares/auth.js";
 
-router.get("/todos", verifyToken, async (req, res) => {
+router.get("/todos/:userId", verifyToken, async (req, res) => {
   const userId = req.params.userId;
   const todoId = req.query.id;
 
@@ -22,26 +23,58 @@ router.get("/todos", verifyToken, async (req, res) => {
   }
 });
 
-router.get("/todos/:id", verifyToken, (req, res) => {
-  const id = req.params.id;
+router.post("/todos/:userId", verifyToken, async (req, res) => {
+  const userId = req.params.userId;
+  const { title, description } = req.body;
 
-  res.send(`Getting TODO with id ${id}`);
+  try {
+    const newTodo = new Todo({
+      userId: userId,
+      title,
+      description,
+    });
+    const savedTodo = await newTodo.save();
+    res.status(201).json(savedTodo);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error creating todo.", error });
+  }
 });
 
-router.post("/todos", (req, res) => {
-  res.send({ id: 1, title: "Todo", description: "My todo" });
+router.delete("/todos/:todoId", verifyToken, async (req, res) => {
+  const todoId = req.params.todoId;
+
+  try {
+    const deletedTodo = await Todo.findByIdAndDelete(todoId);
+    if (!deletedTodo) {
+      return res.status(404).json({ message: "Todo not found" });
+    }
+    res.json({ message: "Todo deleted successfully." });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting todo", error });
+  }
 });
 
-router.put("/todos/:id", (req, res) => {
-  const id = req.params.id;
+router.put("/todos/:userId/:todoId", async (req, res) => {
+  const userId = req.params.userId;
+  const todoId = req.params.todoId;
+  const { title, description } = req.body;
 
-  res.send(`Updating TODO with id ${id}`);
-});
+  try {
+    const updatedTodo = await Todo.findOneAndUpdate(
+      { _id: todoId, userId: userId },
+      { title, description },
+      { new: true }
+    );
 
-router.delete("/todos/:id", (req, res) => {
-  const id = req.params.id;
+    if (!updatedTodo) {
+      return res.status(404).json({ message: "Todo not found." });
+    }
 
-  res.send(`Deleting TODO with id ${id}`);
+    res.json(updatedTodo);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating todo.", error });
+  }
 });
 
 export default router;

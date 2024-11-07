@@ -1,15 +1,14 @@
 # Frontend
 
-It is recommended to use the [http-server](https://www.npmjs.com/package/http-server) npm module to start a basic web server for the front end.
+It is recommended to use the [live-server](https://www.npmjs.com/package/live-server) npm module to start a basic web server for the front end.
 
 ```bash
 # install the http-server globally
 npm install -g http-server
 
-# from the root project start the server
-# this command will start the server and will rewrite the request to index.html when you directly go to a path
-http-server frontend --port 8080 -P "http://localhost:8080?"
+# navigate to frontend directory
+cd frontend
 
-# if you are already in the frontend directory
-http-server --port 8080 -P "http://localhost:8080?"
+# start the web server
+live-server --port=8080 --entry-file=./index.html --proxy="http://127.0.0.1:8080/"
 ```
