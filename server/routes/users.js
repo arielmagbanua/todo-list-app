@@ -1,12 +1,16 @@
 import express from "express";
 const router = express.Router();
 import User from "../models/user.js";
+import bcrypt from "bcryptjs";
 
 router.post("/users", async (req, res) => {
-  const user = req.body;
+  const { name, email, password } = req.body;
 
-  // TODO: create user to database
-  const result = await User.create(user);
+  const result = await User.create({
+    name,
+    email,
+    password: bcrypt.hashSync(password, 10),
+  });
   return res.status(201).json(result);
 });
 
