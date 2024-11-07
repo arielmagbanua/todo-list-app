@@ -13,6 +13,7 @@ const routes = {
   "/todos": "/pages/todos.html",
   "/login": "/pages/login.html",
   "/todos/create": "/pages/create.html",
+  "/register": "/pages/register.html",
 };
 
 // handle route change
@@ -179,6 +180,45 @@ async function onPageChange(path) {
           });
       });
     }
+
+    return;
+  }
+
+  if (path === "/register") {
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const form = document.getElementById("registrationForm");
+
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const name = nameInput.value;
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        // create a new user via api
+        const url = "http://localhost:4000/api/users";
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, password }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("User created:", data);
+            window.location.replace("/login");
+          })
+          .catch((error) => {
+            console.error("Error creating user:", error);
+          });
+      });
+    }
+
+    return;
   }
 }
 

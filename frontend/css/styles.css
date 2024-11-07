@@ -94,7 +94,8 @@ body {
   color: white;
 }
 
-.login {
+.login,
+.register {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,7 +103,8 @@ body {
   width: 100vw;
 }
 
-.login__card {
+.login__card,
+.registration__card {
   min-width: 400px;
 }
 
@@ -138,4 +140,10 @@ body {
 
 .todo-delete:hover {
   color: red;
+}
+
+.register-link-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
