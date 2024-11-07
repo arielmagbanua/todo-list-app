@@ -65,7 +65,11 @@ router.post("/users/auth", async (req, res) => {
       }
     );
 
-    res.send({ message: "Logged in successfully.", token });
+    res.send({
+      message: "Logged in successfully.",
+      user_id: user.id,
+      token,
+    });
   } catch (error) {
     console.log(error);
     return res.status(401).json({ error: "Failed to create token for user!" });

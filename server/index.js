@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import connect from "./database/mongodb-connect.js";
 import dotenv from "dotenv";
 dotenv.config();
@@ -14,6 +15,8 @@ const port = process.env.PORT || 4000;
 // Use body-parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors());
 
 // use the static middleware to serve static files
 app.use(express.static("public"));
