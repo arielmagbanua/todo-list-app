@@ -12,3 +12,15 @@ cd frontend
 # start the web server
 live-server --port=8080 --entry-file=./index.html --proxy="http://127.0.0.1:8080/"
 ```
+
+# Server / Backend
+
+You configure the backend by specifying environment variables in the `.env` file. If you don't have the `.env` file create it inside the `server` directory and provide the following variables.
+
+```env
+DB_CONNECTION=your_mongodb_connection_url
+
+PORT=4000
+
+JWT_SECRET=the_secret_key_for_jwt
+```
