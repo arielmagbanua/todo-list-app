@@ -1,12 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
 import mongoose from "mongoose";
 
 export default function connect() {
-  const database =
-    "mongodb+srv://magbanuacariel:MY_PASSWORD@todocluster.iu0z4.mongodb.net/?retryWrites=true&w=majority&appName=TodoCluster";
+  // get the database from .env
+  const database = process.env.DB_CONNECTION;
+
   mongoose
     .connect(database, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       dbName: "todos",
     })
     .then(() => {

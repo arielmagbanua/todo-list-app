@@ -1,7 +1,8 @@
 import express from "express";
 const router = express.Router();
+import verifyToken from "../middlewares/auth.js";
 
-router.get("/todos", async (req, res) => {
+router.get("/todos", verifyToken, async (req, res) => {
   const userId = req.params.userId;
   const todoId = req.query.id;
 
@@ -21,7 +22,7 @@ router.get("/todos", async (req, res) => {
   }
 });
 
-router.get("/todos/:id", (req, res) => {
+router.get("/todos/:id", verifyToken, (req, res) => {
   const id = req.params.id;
 
   res.send(`Getting TODO with id ${id}`);

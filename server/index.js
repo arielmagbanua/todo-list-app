@@ -1,12 +1,15 @@
 import express from "express";
 import connect from "./database/mongodb-connect.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 import todosRouter from "./routes/todos.js";
 import usersRouter from "./routes/users.js";
 
 const app = express();
 
-const port = 4000;
+// get the port from .env or use 4000
+const port = process.env.PORT || 4000;
 
 // Use body-parser middleware
 app.use(express.urlencoded({ extended: true }));
